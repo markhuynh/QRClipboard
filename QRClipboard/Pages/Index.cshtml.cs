@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -32,19 +28,15 @@ namespace QRClipboard.Pages
             if (!string.IsNullOrEmpty(Id) && Guid.TryParse(Id, out guid))
             {
                 GroupId = guid.ToString();
-            }
-            else
-            {
-                GroupId = Guid.NewGuid().ToString();
-            }
 
-            QRUrl = Request.Scheme + "://" + Request.Host + "/" + GroupId;
+                QRUrl = Request.Scheme + "://" + Request.Host + "/" + GroupId;
 
-            var qrGenerator = new QRCodeGenerator();
-            var urlPayload = new PayloadGenerator.Url(QRUrl);
-            var qrCodeData = qrGenerator.CreateQrCode(urlPayload, QRCodeGenerator.ECCLevel.Q);
-            var qrCode = new Base64QRCode(qrCodeData);
-            QRCode = qrCode.GetGraphic(4);
+                var qrGenerator = new QRCodeGenerator();
+                var urlPayload = new PayloadGenerator.Url(QRUrl);
+                var qrCodeData = qrGenerator.CreateQrCode(urlPayload, QRCodeGenerator.ECCLevel.Q);
+                var qrCode = new Base64QRCode(qrCodeData);
+                QRCode = qrCode.GetGraphic(4);
+            }
         }
     }
 }
