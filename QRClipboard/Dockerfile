@@ -6,7 +6,7 @@ COPY . ./
 RUN dotnet publish -c Release -o publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-alpine
-RUN apt-get update && apt-get install -y libgdiplus
+RUN apk add libgdiplus --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
 WORKDIR /app
 COPY --from=build /src/publish .
 EXPOSE 80
