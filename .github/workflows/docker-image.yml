@@ -16,4 +16,4 @@ jobs:
     - name: Build the Docker image
       run: docker build ./QRClipboard --tag qrclipboard:latest
     - name: Publish to Docker Hub
-      run: docker push ${{secrets.DOCKER_USER}}/qrclipboard
+      run: docker push markhuynh/qrclipboard
